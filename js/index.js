@@ -1,18 +1,8 @@
-document.addEventListener('DOMContentLoaded', init)
+document.addEventListener('DOMContentLoaded', getMonsters)
 let limit = 50
 let page = 1
 const formCont = document.querySelector('#create-monster')
 const container = document.querySelector('#monster-container')
-
-
-function init() {
-
-
-    getMonsters()
-
-    formCont.addEventListener('submit', addMonster)
-    makeForm()
-}
 
 function getMonsters() {
     return fetch(`http://localhost:3000/monsters/?_limit=${limit}&_page=${page}`)
@@ -35,7 +25,7 @@ function makeForm() {
        <input type="text" name="name" placeholder="Enter Monster Name">
        <input type="text" name="age" placeholder="Enter Monster Age">
        <input type="text" name="description" placeholder="Enter Monster Description">
-       <input type="submit" value="Submit">
+       <input type="submit" value="Create Monster">
     </form>`
 
     formCont.innerHTML = form
@@ -67,3 +57,8 @@ function addMonster(e) {
         .catch(console.log)
 
 }
+ 
+
+formCont.addEventListener('submit', addMonster)
+makeForm()
+
